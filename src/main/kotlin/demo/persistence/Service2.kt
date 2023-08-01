@@ -15,6 +15,7 @@ open class Service2 {
 
     @TransactionalAdvice("db2")
     open fun doSomething(){
+        //sql will fail, just to have some entityManager sample code
         entityManager.createNativeQuery("SELECT * from universe")
     }
 
