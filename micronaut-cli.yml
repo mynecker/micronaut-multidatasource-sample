@@ -1,0 +1,6 @@
+applicationType: cli
+defaultPackage: demo
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [ app-name, data, data-jpa, gradle, h2, http-client-test, jdbc-hikari, junit, kapt, kotlin, kotlin-extension-functions, logback, micronaut-build, picocli, picocli-junit, picocli-kotlin-application, properties, readme, serialization-jackson, shade ]
