@@ -20,7 +20,6 @@ repositories {
 }
 
 dependencies {
-    ksp("info.picocli:picocli-codegen")
     ksp("io.micronaut.data:micronaut-data-processor")
     ksp("io.micronaut.serde:micronaut-serde-processor")
     implementation("io.micronaut.picocli:micronaut-picocli")
@@ -32,12 +31,14 @@ dependencies {
     implementation("io.micronaut.data:micronaut-data-tx-hibernate")
     implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("jakarta.persistence:jakarta.persistence-api:2.2.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    runtimeOnly("org.yaml:snakeyaml")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("com.h2database:h2")
-    testImplementation("io.micronaut:micronaut-http-client")
+
 }
 
 
@@ -62,11 +63,23 @@ tasks {
 }
 graalvmNative.toolchainDetection.set(false)
 micronaut {
+    runtime("netty")
     testRuntime("junit5")
-        processing {
-            incremental(true)
-            annotations("demo.*")
-        }
+    processing {
+        incremental(true)
+        annotations("demo.*")
+    }
+    aot {
+        // Please review carefully the optimizations enabled below
+        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+        optimizeServiceLoading = false
+        convertYamlToJava = false
+        precomputeOperations = true
+        cacheEnvironment = true
+        optimizeClassLoading = true
+        deduceEnvironment = true
+        optimizeNetty = true
+    }
 }
 
 

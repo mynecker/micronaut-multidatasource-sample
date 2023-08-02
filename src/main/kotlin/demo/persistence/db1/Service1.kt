@@ -10,15 +10,18 @@ import io.micronaut.transaction.annotation.Transactional
 @Singleton
 open class Service1 {
 
-    @Inject
-    @Named("db1")
+    //@Inject
     @PersistenceContext
     lateinit var entityManager: EntityManager
 
-    @Transactional(transactionManager = "db1")
+    @Inject
+    lateinit var repoItem1: RepoItem1
+
+
+    @Transactional
     open fun doSomething(){
         //sql will fail, just to have some entityManager sample code
-        entityManager.createNativeQuery("SELECT * from universe")
+        repoItem1.save(Item1(System.currentTimeMillis(),"some value "))
     }
 
 }
