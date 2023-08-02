@@ -1,4 +1,4 @@
-package demo.persistence
+package demo.persistence.db1
 
 import jakarta.inject.Inject
 import jakarta.inject.Named
@@ -11,10 +11,11 @@ import io.micronaut.transaction.annotation.Transactional
 open class Service1 {
 
     @Inject
+    @Named("db1")
     @PersistenceContext
     lateinit var entityManager: EntityManager
 
-    @Transactional(name="db1")
+    @Transactional(transactionManager = "db1")
     open fun doSomething(){
         //sql will fail, just to have some entityManager sample code
         entityManager.createNativeQuery("SELECT * from universe")
