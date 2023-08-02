@@ -1,6 +1,6 @@
 package demo
 
-import demo.persistence.Service1
+import demo.persistence.db1.Service1
 import io.micronaut.configuration.picocli.PicocliRunner
 import jakarta.inject.Inject
 import picocli.CommandLine.Command
