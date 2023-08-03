@@ -5,12 +5,10 @@ datasources:
   db1:
     url: jdbc:h2:mem:devDb1;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
-    #dialect: org.hibernate.dialect.H2Dialect
     username: sa
   db2:
     url: jdbc:h2:mem:devDb2;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
-    #dialect: org.hibernate.dialect.H2Dialect
     username: sa
 jpa:
   db1:
@@ -22,13 +20,14 @@ jpa:
         hbm2ddl:
           auto: update
         show-sql: true
-  #db2:
-  #  entity-scan:
-  #    packages:
-  #      - 'demo.persistence.db2'
-  #  properties:
-  #    hibernate:
-  #      hbm2ddl:
-  #        auto: update
-  #      show-sql: true
+  # removing db2 JPA configuration -> application works
+  db2:
+    entity-scan:
+      packages:
+        - 'demo.persistence.db2'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show-sql: true
 
