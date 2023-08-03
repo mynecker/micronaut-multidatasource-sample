@@ -20,7 +20,7 @@ class MultidatasourcesCommandTest {
         PicocliRunner.run(MultidatasourcesCommand::class.java, ctx, *args)
 
         val response = baos.toString()
-        Assertions.assertFalse(response.contains("Hi!"))
+        Assertions.assertTrue(response.contains("Bingo!"))
 
         ctx.close()
     }

@@ -1,5 +1,7 @@
 package demo.persistence
 
+import demo.persistence.db1.Item1
+import demo.persistence.db1.RepoItem1
 import io.micronaut.transaction.annotation.Transactional
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
@@ -13,10 +15,13 @@ open class Service1 {
     @PersistenceContext(name = "db1")
     lateinit var entityManager: EntityManager
 
+    @Inject
+    lateinit var repoItem1: RepoItem1
+
     @Transactional("db1")
     open fun doSomething(){
-        //sql will fail, just to have some entityManager sample code
-        entityManager.createNativeQuery("SELECT * from universe")
+        repoItem1.save(Item1(System.currentTimeMillis(),"some value"))
+        entityManager.flush()
     }
 
 }

@@ -5,9 +5,9 @@ import jakarta.persistence.Id
 
 
 @Entity
-class Item1 {
+data class Item1 (
 
     @Id
-    var id: Long = 1
-    var value: String = "some Value"
-}
+    var myId: Long = 1,
+    var myValue: String = "some Value"
+)

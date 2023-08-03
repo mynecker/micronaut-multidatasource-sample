@@ -16,10 +16,10 @@ jpa:
       packages: 'demo.persistence.db1'
     properties:
       hibernate:
-        hbm2ddl: auto
+        hbm2ddl: create-drop
   db2:
     properties:
       entity-scan:
         packages: 'demo.persistence.db2'
       hibernate:
-        hbm2ddl: auto
+        hbm2ddl: create-drop
