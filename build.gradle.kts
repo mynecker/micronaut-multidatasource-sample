@@ -20,29 +20,33 @@ repositories {
 }
 
 dependencies {
-    ksp("info.picocli:picocli-codegen")
     ksp("io.micronaut.data:micronaut-data-processor")
     ksp("io.micronaut.serde:micronaut-serde-processor")
     implementation("io.micronaut.picocli:micronaut-picocli")
     implementation("io.micronaut.cache:micronaut-cache-infinispan")
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
-    implementation("io.micronaut.data:micronaut-data-tx")
-    implementation("io.micronaut.data:micronaut-data-jpa")
-    implementation("io.micronaut.data:micronaut-data-tx-hibernate")
-    implementation("io.micronaut.sql:micronaut-hibernate-jpa")
-    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+
+    implementation("jakarta.persistence:jakarta.persistence-api:2.2.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    runtimeOnly("org.yaml:snakeyaml")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("com.h2database:h2")
-    testImplementation("io.micronaut:micronaut-http-client")
+
+    //implementation("io.micronaut.data:micronaut-data-tx")
+    //implementation("io.micronaut.data:micronaut-data-jpa:4.0.4")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa:4.0.4")
+    //implementation("io.micronaut.data:micronaut-data-tx-hibernate:4.0.4")
+
+    //implementation("io.micronaut.sql:micronaut-hibernate-jpa")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari:4.0.4")
 }
 
 
 application {
-    mainClass.set("demo.MultidatasourceCommand")
+    mainClass.set("demo.MultidatasourcesCommandKt")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("17")
@@ -62,11 +66,23 @@ tasks {
 }
 graalvmNative.toolchainDetection.set(false)
 micronaut {
+    runtime("netty")
     testRuntime("junit5")
-        processing {
-            incremental(true)
-            annotations("demo.*")
-        }
+    processing {
+        incremental(true)
+        annotations("demo.persistence.*")
+    }
+    aot {
+        // Please review carefully the optimizations enabled below
+        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+        optimizeServiceLoading = false
+        convertYamlToJava = false
+        precomputeOperations = true
+        cacheEnvironment = true
+        optimizeClassLoading = true
+        deduceEnvironment = true
+        optimizeNetty = true
+    }
 }
 
 

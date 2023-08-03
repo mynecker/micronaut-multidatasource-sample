@@ -1,13 +1,16 @@
 package demo.persistence.db1
 
+import io.micronaut.serde.annotation.Serdeable
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 
 
+@Serdeable
 @Entity
-class Item1 {
-
+data class Item1(
     @Id
-    var id: Long = 1
-    var value: String = "some Value"
+    var myid: Long = 1,
+    var myvalue: String = "some Value"
+){
+
 }
