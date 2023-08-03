@@ -1,3 +1,5 @@
+## Sample for Micronaut 4 in a dedicated branch `micronaut4`
+
 ## Sample for multi datasources
 
 Does not work - for reproduction of possible issue only
