@@ -1,4 +1,4 @@
-## Sample for multi datasources
+## Sample for multi datasources and Micronaut 4 (4.0.4 for data subprojects)
 
 Does not work - for reproduction of possible issue only
 
