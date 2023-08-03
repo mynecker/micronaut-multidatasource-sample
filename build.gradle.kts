@@ -22,7 +22,6 @@ repositories {
 dependencies {
     ksp("io.micronaut.data:micronaut-data-processor")
     ksp("io.micronaut.serde:micronaut-serde-processor")
-    implementation("io.micronaut.picocli:micronaut-picocli")
     implementation("io.micronaut.cache:micronaut-cache-infinispan")
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
@@ -35,18 +34,13 @@ dependencies {
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("com.h2database:h2")
 
-    //implementation("io.micronaut.data:micronaut-data-tx")
-    //implementation("io.micronaut.data:micronaut-data-jpa:4.0.4")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa:4.0.4")
-    //implementation("io.micronaut.data:micronaut-data-tx-hibernate:4.0.4")
-
-    //implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari:4.0.4")
 }
 
 
 application {
-    mainClass.set("demo.MultidatasourcesCommandKt")
+    mainClass.set("demo.ApplicationKt")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("17")

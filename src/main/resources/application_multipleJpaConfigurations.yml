@@ -22,13 +22,13 @@ jpa:
         hbm2ddl:
           auto: update
         show-sql: true
-  #db2:
-  #  entity-scan:
-  #    packages:
-  #      - 'demo.persistence.db2'
-  #  properties:
-  #    hibernate:
-  #      hbm2ddl:
-  #        auto: update
-  #      show-sql: true
+  db2:
+    entity-scan:
+      packages:
+        - 'demo.persistence.db2'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show-sql: true
 
