@@ -1,10 +1,10 @@
 package demo.persistence
 
-import io.micronaut.transaction.annotation.TransactionalAdvice
+import io.micronaut.transaction.annotation.Transactional
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
-import javax.persistence.EntityManager
-import javax.persistence.PersistenceContext
+import jakarta.persistence.EntityManager
+import jakarta.persistence.PersistenceContext
 
 @Singleton
 open class Service1 {
@@ -13,7 +13,7 @@ open class Service1 {
     @PersistenceContext(name = "db1")
     lateinit var entityManager: EntityManager
 
-    @TransactionalAdvice("db1")
+    @Transactional("db1")
     open fun doSomething(){
         //sql will fail, just to have some entityManager sample code
         entityManager.createNativeQuery("SELECT * from universe")

@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.allopen") version "1.8.22"
     id("org.jetbrains.kotlin.plugin.jpa") version "1.8.22"
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.micronaut.application") version "3.7.10"
+    id("io.micronaut.application") version "4.0.2"
 }
 
 version = "0.1"
@@ -35,6 +35,7 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.yaml:snakeyaml")
 }
 
 
