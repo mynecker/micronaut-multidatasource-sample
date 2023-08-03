@@ -2,15 +2,30 @@ micronaut:
   application:
     name: myapp
 datasources:
-  default:
+  db1:
     url: jdbc:h2:mem:devDb1;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     #dialect: org.hibernate.dialect.H2Dialect
+    username: sa
+  db2:
+    url: jdbc:h2:mem:devDb2;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    #dialect: org.hibernate.dialect.H2Dialect
+    username: sa
 jpa:
-  default:
+  db1:
     entity-scan:
       packages:
-        - demo.persistence.db1
+        - 'demo.persistence.db1'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show-sql: true
+  db2:
+    entity-scan:
+      packages:
+        - 'demo.persistence.db2'
     properties:
       hibernate:
         hbm2ddl:
