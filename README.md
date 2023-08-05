@@ -1,5 +1,7 @@
 # Sample for multiple datasources with Micronaut 4
 
+Micronaut 4.0.2, Micronaut-data 4.0.4
+
 ## Relates to
 This sample relates to micronaut-data issue https://github.com/micronaut-projects/micronaut-data/issues/2419
 
