@@ -12,13 +12,13 @@ import jakarta.persistence.PersistenceContext
 open class Service1 {
 
     @Inject
-    @PersistenceContext(name = "db1")
+    @PersistenceContext(name = "default")
     lateinit var entityManager: EntityManager
 
     @Inject
     lateinit var repoItem1: RepoItem1
 
-    @Transactional("db1")
+    @Transactional("default")
     open fun doSomething(){
         repoItem1.save(Item1(System.currentTimeMillis(),"some value"))
         entityManager.flush()
