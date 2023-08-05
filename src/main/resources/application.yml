@@ -2,7 +2,8 @@ micronaut:
   application:
     name: myapp
 datasources:
-  db1:
+  # default name is mandatory for one datasource
+  default:
     url: jdbc:h2:mem:devDb1;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: sa
@@ -11,7 +12,8 @@ datasources:
     driver-class-name: org.h2.Driver
     username: sa
 jpa:
-  db1:
+  # default name is mandatory for one datasource
+  default:
     entity-scan:
       packages:
         - 'demo.persistence.db1'

@@ -1,4 +1,4 @@
-package demo.persistence.db1
+package demo.persistence.db2
 
 import io.micronaut.core.annotation.NonNull
 import io.micronaut.transaction.annotation.Transactional
@@ -9,26 +9,26 @@ import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 
 @Singleton
-open class Service1 {
+open class Service2 {
 
     @Inject
-    @Named(value="default")
+    @Named(value="db2")
     @PersistenceContext
     lateinit var entityManager: EntityManager
 
     @Inject
-    lateinit var repoItem1: RepoItem1
+    lateinit var repoItem2: RepoItem2
 
 
-    @Transactional(transactionManager = "default")
-    open fun doSomething(): Pair<MutableList<Item1>, MutableList<Any?>> {
+    @Transactional(transactionManager = "db2")
+    open fun doSomething(): Pair<MutableList<Item2>, MutableList<Any?>> {
         //sql will fail, just to have some entityManager sample code
-        repoItem1.save(Item1(System.currentTimeMillis(),"some value "))
+        repoItem2.save(Item2(System.currentTimeMillis(),"some value "))
         entityManager.flush()
-        val query = entityManager.createNativeQuery("select count(*) from Item1")
+        val query = entityManager.createNativeQuery("select count(*) from Item2")
         val justAnotherResultList = query.resultList
 
-        return Pair(repoItem1.findAll(),justAnotherResultList)
+        return Pair(repoItem2.findAll(),justAnotherResultList)
     }
 
 }
